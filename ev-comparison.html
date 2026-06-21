@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Comparison — MG S5 X+ · Deepal S05 Max · Nevo Q05 Ultra</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --mg:      #C0392B;
+    --mg-soft: #FDECEA;
+    --mg-mid:  #E8C5C2;
+    --dp:      #1A56A0;
+    --dp-soft: #E8F0FB;
+    --dp-mid:  #B8CFEE;
+    --nv:      #1D7A5F;
+    --nv-soft: #E6F5F1;
+    --nv-mid:  #A8D9CB;
+
+    --ink:     #0F1117;
+    --ink-2:   #3A3F50;
+    --ink-3:   #6B7280;
+    --rule:    #E5E7EB;
+    --bg:      #F9FAFB;
+    --white:   #FFFFFF;
+
+    --radius:  6px;
+    --font:    'IBM Plex Sans Thai', sans-serif;
+    --mono:    'IBM Plex Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── Header / Hero ── */
+  .hero {
+    background: var(--ink);
+    color: var(--white);
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .hero-sub {
+    color: #9CA3AF;
+    font-size: 13px;
+    margin-bottom: 30px;
+  }
+
+  /* brand pills in hero */
+  .brand-pills {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .pill-mg  { background: var(--mg);  color: #fff; }
+  .pill-dp  { background: var(--dp);  color: #fff; }
+  .pill-nv  { background: var(--nv);  color: #fff; }
+  .pill-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.5); }
+
+  /* ── Sticky Nav ── */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sticky-nav::-webkit-scrollbar { display:none; }
+  .nav-item {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-3);
+    text-decoration: none;
+    letter-spacing: .03em;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-item:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* ── Main Layout ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px 60px;
+  }
+
+  /* ── Section Header ── */
+  .section {
+    margin-top: 48px;
+  }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-3);
+    letter-spacing: .1em;
+    background: var(--rule);
+    padding: 2px 7px;
+    border-radius: 3px;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+
+  /* ── Table ── */
+  .table-wrap {
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--white);
+    overflow-x: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+  }
+
+  /* column header row */
+  thead tr.col-heads th {
+    padding: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .col-head-inner {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .col-brand { font-size: 13px; font-weight: 700; }
+  .col-model { font-size: 11px; font-weight: 400; color: inherit; opacity: .75; }
+
+  th.col-mg   .col-brand { color: var(--mg); }
+  th.col-dp   .col-brand { color: var(--dp); }
+  th.col-nv   .col-brand { color: var(--nv); }
+  th.col-spec { text-align:left; font-size:12px; font-weight:600; color:var(--ink-3); letter-spacing:.04em; padding:14px 16px; background:var(--bg); }
+
+  /* sub-group row */
+  tr.sub-group td {
+    background: var(--ink);
+    color: rgba(255,255,255,.75);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    font-family: var(--mono);
+  }
+
+  /* data rows */
+  tbody tr.data-row td {
+    padding: 13px 16px;
+    vertical-align: top;
+    border-top: 1px solid var(--rule);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+  tbody tr.data-row:hover td { background: #F3F4F6; }
+
+  td.spec-label {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+    background: var(--bg);
+    width: 24%;
+    min-width: 160px;
+  }
+
+  /* brand column tints on hover */
+  td.val-mg { border-left: 3px solid var(--mg-mid); }
+  td.val-dp { border-left: 3px solid var(--dp-mid); }
+  td.val-nv { border-left: 3px solid var(--nv-mid); }
+
+  /* winner badges */
+  .win {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .win-mg { background: var(--mg-soft); color: var(--mg); }
+  .win-dp { background: var(--dp-soft); color: var(--dp); }
+  .win-nv { background: var(--nv-soft); color: var(--nv); }
+
+  /* value emphasis */
+  .val-bold { font-weight: 700; }
+  .na { color: var(--ink-3); font-size: 12px; }
+
+  /* icon-style checkmarks / x */
+  .yes { color: #059669; font-weight: 600; }
+  .no  { color: #D1D5DB; }
+  .partial { color: #D97706; font-weight: 600; }
+
+  /* tag chips inside cells */
+  .tag {
+    display: inline-block;
+    background: var(--rule);
+    color: var(--ink-2);
+    font-size: 10.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin: 1px 2px 1px 0;
+    font-family: var(--mono);
+    letter-spacing: .02em;
+  }
+  .tag-mg { background: var(--mg-soft); color: var(--mg); }
+  .tag-dp { background: var(--dp-soft); color: var(--dp); }
+  .tag-nv { background: var(--nv-soft); color: var(--nv); }
+
+  /* progress bars for numerical compare */
+  .bar-wrap { display:flex; flex-direction:column; gap:2px; }
+  .bar-val  { font-weight:600; font-size:13.5px; }
+  .bar-track {
+    height:4px; background:var(--rule); border-radius:2px; margin-top:3px; width:100%; max-width:140px;
+  }
+  .bar-fill { height:100%; border-radius:2px; }
+  .bar-mg { background: var(--mg); }
+  .bar-dp { background: var(--dp); }
+  .bar-nv { background: var(--nv); }
+
+  /* ── Summary Cards ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .card {
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+  }
+  .card-mg { border-top: 4px solid var(--mg); }
+  .card-dp { border-top: 4px solid var(--dp); }
+  .card-nv { border-top: 4px solid var(--nv); }
+
+  .card-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .card-brand {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .card-trim {
+    font-size: 11px;
+    color: var(--ink-3);
+    font-weight: 500;
+  }
+  .card-mg .card-brand { color: var(--mg); }
+  .card-dp .card-brand { color: var(--dp); }
+  .card-nv .card-brand { color: var(--nv); }
+
+  .card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card li {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    padding-left: 16px;
+    position: relative;
+  }
+  .card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ink-3);
+    font-size: 12px;
+  }
+  .card li strong { color: var(--ink); }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: var(--ink-3);
+    padding: 20px 0 36px;
+    border-top: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 32px 16px 24px; }
+    .section { margin-top: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<div class="hero">
+  <div class="hero-eyebrow">เปรียบเทียบรถยนต์ไฟฟ้า · Top Trim Showdown</div>
+  <h1>MG S5 X+ &nbsp;·&nbsp; Deepal S05 Max &nbsp;·&nbsp; Nevo Q05 Ultra</h1>
+  <p class="hero-sub">ข้อมูลทางเทคนิคเชิงลึกจาก Spec Sheet อย่างเป็นทางการ</p>
+  <div class="brand-pills">
+    <span class="pill pill-mg"><span class="pill-dot"></span>MG S5 X+</span>
+    <span class="pill pill-dp"><span class="pill-dot"></span>Deepal S05 Max</span>
+    <span class="pill pill-nv"><span class="pill-dot"></span>Nevo Q05 Ultra</span>
+  </div>
+</div>
+
+<!-- ── Sticky Nav ── -->
+<nav class="sticky-nav">
+  <a class="nav-item" href="#dim">มิติตัวถัง</a>
+  <a class="nav-item" href="#power">ขุมพลัง</a>
+  <a class="nav-item" href="#battery">แบตเตอรี่ & ชาร์จ</a>
+  <a class="nav-item" href="#chassis">ช่วงล่าง</a>
+  <a class="nav-item" href="#interior">ห้องโดยสาร</a>
+  <a class="nav-item" href="#adas">ความปลอดภัย & ADAS</a>
+  <a class="nav-item" href="#verdict">สรุป</a>
+</nav>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 1 — DIMENSIONS
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="dim">
+    <div class="section-label">
+      <span class="section-num">01</span>
+      <span class="section-title">มิติตัวถัง & ความจุ</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="data-row">
+            <td class="spec-label">ความยาว</td>
+            <td class="val-mg">4,476 มม.</td>
+            <td class="val-dp"><span class="val-bold">4,620 มม.</span><span class="win win-dp">ยาวสุด</span></td>
+            <td class="val-nv">4,435 มม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ความกว้าง</td>
+            <td class="val-mg">1,849 มม.</td>
+            <td class="val-dp"><span class="val-bold">1,900 มม.</span><span class="win win-dp">กว้างสุด</span></td>
+            <td class="val-nv">1,855 มม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ความสูง</td>
+            <td class="val-mg"><span class="val-bold">1,621 มม.</span><span class="win win-mg">สูงสุด</span></td>
+            <td class="val-dp">1,600 มม.</td>
+            <td class="val-nv">1,600 มม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระยะฐานล้อ (Wheelbase)</td>
+            <td class="val-mg">2,730 มม.</td>
+            <td class="val-dp"><span class="val-bold">2,880 มม.</span><span class="win win-dp">ยาวสุด</span></td>
+            <td class="val-nv">2,735 มม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ความกว้างช่วงล้อ หน้า / หลัง</td>
+            <td class="val-mg"><span class="na">N/A</span></td>
+            <td class="val-dp">1,625 / 1,640 มม.</td>
+            <td class="val-nv">1,580 / 1,590 มม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระยะต่ำสุดจากพื้น</td>
+            <td class="val-mg">139 มม.</td>
+            <td class="val-dp">169 มม.</td>
+            <td class="val-nv"><span class="val-bold">170 มม.</span><span class="win win-nv">สูงสุด</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">Frunk (ช่องเก็บหน้า)</td>
+            <td class="val-mg"><span class="no">✕ ไม่มี</span></td>
+            <td class="val-dp"><span class="yes">✔ 159 ลิตร</span><span class="win win-dp">เฉพาะรุ่น</span></td>
+            <td class="val-nv"><span class="no">✕ ไม่มี</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ท้ายรถ / เก็บสัมภาระ</td>
+            <td class="val-mg">ปรับ 2 ระดับ, พับ 60:40</td>
+            <td class="val-dp">พับ 60:40</td>
+            <td class="val-nv">~450 ลิตร, พับ 60:40<br><span class="tag">90 ลิตร ใต้พื้น</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">จำนวนที่นั่ง</td>
+            <td class="val-mg">5</td>
+            <td class="val-dp">5</td>
+            <td class="val-nv">5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 2 — POWERTRAIN
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="power">
+    <div class="section-label">
+      <span class="section-num">02</span>
+      <span class="section-title">ขุมพลัง & สมรรถนะ</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="data-row">
+            <td class="spec-label">ประเภทมอเตอร์</td>
+            <td class="val-mg"><span class="tag">PMSM</span></td>
+            <td class="val-dp"><span class="tag">PMSM</span></td>
+            <td class="val-nv"><span class="tag">PMSM</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบขับเคลื่อน</td>
+            <td class="val-mg"><span class="tag tag-mg">RWD</span></td>
+            <td class="val-dp"><span class="tag tag-dp">RWD</span></td>
+            <td class="val-nv"><span class="tag tag-nv">FWD</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">กำลังสูงสุด</td>
+            <td class="val-mg">
+              <div class="bar-wrap">
+                <span class="bar-val">125 kW <span style="font-weight:400;color:var(--ink-3)">(170 PS)</span></span>
+                <div class="bar-track"><div class="bar-fill bar-mg" style="width:52%"></div></div>
+              </div>
+            </td>
+            <td class="val-dp">
+              <div class="bar-wrap">
+                <span class="bar-val">175 kW <span style="font-weight:400;color:var(--ink-3)">(238 PS)</span></span><span class="win win-dp">แรงสุด</span>
+                <div class="bar-track"><div class="bar-fill bar-dp" style="width:100%"></div></div>
+              </div>
+            </td>
+            <td class="val-nv">
+              <div class="bar-wrap">
+                <span class="bar-val">120 kW <span style="font-weight:400;color:var(--ink-3)">(163 PS)</span></span>
+                <div class="bar-track"><div class="bar-fill bar-nv" style="width:49%"></div></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">แรงบิดสูงสุด</td>
+            <td class="val-mg">
+              <div class="bar-wrap">
+                <span class="bar-val">250 N·m</span>
+                <div class="bar-track"><div class="bar-fill bar-mg" style="width:78%"></div></div>
+              </div>
+            </td>
+            <td class="val-dp">
+              <div class="bar-wrap">
+                <span class="bar-val">320 N·m</span><span class="win win-dp">สูงสุด</span>
+                <div class="bar-track"><div class="bar-fill bar-dp" style="width:100%"></div></div>
+              </div>
+            </td>
+            <td class="val-nv">
+              <div class="bar-wrap">
+                <span class="bar-val">190 N·m</span>
+                <div class="bar-track"><div class="bar-fill bar-nv" style="width:59%"></div></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">อัตราเร่ง 0–100 กม./ชม.</td>
+            <td class="val-mg"><span class="na">ไม่ระบุ</span></td>
+            <td class="val-dp"><span class="val-bold">7.3 วินาที</span><span class="win win-dp">เร็วสุด</span></td>
+            <td class="val-nv">8.2 วินาที</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ความเร็วสูงสุด</td>
+            <td class="val-mg"><span class="na">ไม่ระบุ</span></td>
+            <td class="val-dp"><span class="val-bold">180 กม./ชม.</span><span class="win win-dp">สูงสุด</span></td>
+            <td class="val-nv">160 กม./ชม.</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">โหมดขับขี่</td>
+            <td class="val-mg"><span class="tag">Eco</span><span class="tag">Normal</span><span class="tag">Sport</span></td>
+            <td class="val-dp"><span class="tag">Eco</span><span class="tag">Comfort</span><span class="tag">Sport</span><span class="tag">Custom</span></td>
+            <td class="val-nv"><span class="tag">Eco</span><span class="tag">Normal</span><span class="tag">Sport</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 3 — BATTERY & CHARGING
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="battery">
+    <div class="section-label">
+      <span class="section-num">03</span>
+      <span class="section-title">แบตเตอรี่ & เทคโนโลยีการชาร์จ</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="data-row">
+            <td class="spec-label">ประเภทแบตเตอรี่</td>
+            <td class="val-mg"><span class="tag">Li-ion</span><br><span style="font-size:12px;color:var(--ink-3)">Nebula Platform</span></td>
+            <td class="val-dp"><span class="tag tag-dp">LFP</span></td>
+            <td class="val-nv"><span class="tag tag-nv">LFP</span><br><span style="font-size:12px;color:var(--ink-3)">by CATL</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ความจุแบตเตอรี่</td>
+            <td class="val-mg">
+              <div class="bar-wrap">
+                <span class="bar-val">50.0 kWh</span>
+                <div class="bar-track"><div class="bar-fill bar-mg" style="width:89%"></div></div>
+              </div>
+            </td>
+            <td class="val-dp">
+              <div class="bar-wrap">
+                <span class="bar-val">56.1 kWh</span><span class="win win-dp">มากสุด</span>
+                <div class="bar-track"><div class="bar-fill bar-dp" style="width:100%"></div></div>
+              </div>
+            </td>
+            <td class="val-nv">
+              <div class="bar-wrap">
+                <span class="bar-val">51.9 kWh</span>
+                <div class="bar-track"><div class="bar-fill bar-nv" style="width:92%"></div></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระยะวิ่งสูงสุด (NEDC)</td>
+            <td class="val-mg">
+              <div class="bar-wrap">
+                <span class="bar-val">416 กม.</span>
+                <div class="bar-track"><div class="bar-fill bar-mg" style="width:88%"></div></div>
+              </div>
+            </td>
+            <td class="val-dp">
+              <div class="bar-wrap">
+                <span class="bar-val">470 กม.</span><span class="win win-dp">ไกลสุด</span>
+                <div class="bar-track"><div class="bar-fill bar-dp" style="width:100%"></div></div>
+              </div>
+            </td>
+            <td class="val-nv">
+              <div class="bar-wrap">
+                <span class="bar-val">462 กม.</span>
+                <div class="bar-track"><div class="bar-fill bar-nv" style="width:98%"></div></div>
+              </div>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ชาร์จ AC สูงสุด</td>
+            <td class="val-mg">รองรับ AC <span style="font-size:12px;color:var(--ink-3)">(ไม่ระบุ kW)</span></td>
+            <td class="val-dp">6.6 kW</td>
+            <td class="val-nv">6.6 kW</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ชาร์จ DC สูงสุด</td>
+            <td class="val-mg">150 kW</td>
+            <td class="val-dp">151.5 kW</td>
+            <td class="val-nv"><span class="val-bold">162 kW</span><span class="win win-nv">เร็วสุด</span><br><span style="font-size:11.5px;color:var(--ink-3)">เทคโนโลยี 3C</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ชาร์จ DC เร็ว (30→80%)</td>
+            <td class="val-mg">10→80% ใน <span class="val-bold">26 นาที</span></td>
+            <td class="val-dp"><span class="val-bold">15 นาที</span><span class="win win-dp">เร็วสุด</span></td>
+            <td class="val-nv"><span class="val-bold">15 นาที</span><span class="win win-nv">เร็วสุด</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบ V2L (จ่ายไฟออก)</td>
+            <td class="val-mg"><span class="yes">✔ มี V2L</span></td>
+            <td class="val-dp"><span class="yes">✔ มี V2L</span></td>
+            <td class="val-nv"><span class="yes">✔ มี V2L อัจฉริยะ</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบ Regenerative Braking</td>
+            <td class="val-mg"><span class="yes">✔ One Pedal</span></td>
+            <td class="val-dp"><span class="yes">✔ มี</span></td>
+            <td class="val-nv"><span class="yes">✔ มี</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">การรับประกันแบตเตอรี่</td>
+            <td class="val-mg"><span class="val-bold" style="color:var(--mg)">Lifetime Warranty</span><span class="win win-mg">พิเศษ</span></td>
+            <td class="val-dp"><span class="na">ตามเงื่อนไขบริษัท</span></td>
+            <td class="val-nv"><span class="na">ตามเงื่อนไขบริษัท</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 4 — CHASSIS & SUSPENSION
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="chassis">
+    <div class="section-label">
+      <span class="section-num">04</span>
+      <span class="section-title">แชสซี, ช่วงล่าง & เบรก</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="data-row">
+            <td class="spec-label">ช่วงล่างหน้า</td>
+            <td class="val-mg">MacPherson Strut อิสระ</td>
+            <td class="val-dp">MacPherson Strut</td>
+            <td class="val-nv">MacPherson Strut อิสระ</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ช่วงล่างหลัง</td>
+            <td class="val-mg"><span class="val-bold">5-Link อิสระ</span><span class="win win-mg">เสถียรสุด</span></td>
+            <td class="val-dp">Multi-link อิสระ</td>
+            <td class="val-nv">Torsion Beam</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">เบรกหน้า / หลัง</td>
+            <td class="val-mg">Ventilated Disc / Disc</td>
+            <td class="val-dp">Ventilated Disc / Disc</td>
+            <td class="val-nv">Ventilated Disc / Disc</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบพวงมาลัย</td>
+            <td class="val-mg">EPS — DP-EPS (Dual Pinion)</td>
+            <td class="val-dp">EPS</td>
+            <td class="val-nv">EPS</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">รัศมีวงเลี้ยวแคบสุด</td>
+            <td class="val-mg"><span class="na">ไม่ระบุ</span></td>
+            <td class="val-dp">5.75 ม.</td>
+            <td class="val-nv"><span class="val-bold">5.3 ม.</span><span class="win win-nv">เลี้ยวแคบสุด</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ขนาดล้อ</td>
+            <td class="val-mg"><span class="tag">18 นิ้ว</span> 215/55 R18</td>
+            <td class="val-dp"><span class="tag">18 นิ้ว</span> 225/60 R18<br><span style="font-size:11.5px;color:var(--ink-3)">(ออปชัน 20 นิ้ว)</span></td>
+            <td class="val-nv"><span class="tag">17 นิ้ว</span> 225/60 R17 (Max)<br><span class="tag">18 นิ้ว</span> 225/55 R18 (Ultra)</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบช่วยเสริม</td>
+            <td class="val-mg"><span class="tag">ABS</span><span class="tag">EBD</span><span class="tag">ESP</span><span class="tag">TCS</span><span class="tag">HHC</span></td>
+            <td class="val-dp"><span class="tag">ABS</span><span class="tag">EBD</span><span class="tag">ESP</span><span class="tag">TCS</span><span class="tag">HHC</span><span class="tag">HDC</span><span class="tag">ROM</span></td>
+            <td class="val-nv"><span class="tag">ABS</span><span class="tag">EBD</span><span class="tag">ESP</span><span class="tag">TCS</span><span class="tag">HHC</span><span class="tag">HDC</span><span class="tag">ROM</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 5 — INTERIOR & INFOTAINMENT
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="interior">
+    <div class="section-label">
+      <span class="section-num">05</span>
+      <span class="section-title">ห้องโดยสาร & ระบบอินโฟเทนเมนต์</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sub-group"><td colspan="4">จอแสดงผล</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">หน้าจอกลาง</td>
+            <td class="val-mg"><span class="val-bold">15.6 นิ้ว</span><span class="win win-mg">ใหญ่สุด</span></td>
+            <td class="val-dp">15.4 นิ้ว<br><span style="font-size:11.5px;color:var(--ink-3)">หมุนซันฟลาวเวอร์ได้</span></td>
+            <td class="val-nv">14.6 นิ้ว<br><span style="font-size:11.5px;color:var(--ink-3)">ความละเอียดสูง</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">มาตรวัดคนขับ</td>
+            <td class="val-mg">Digital Cluster 10.25 นิ้ว</td>
+            <td class="val-dp"><span class="val-bold">AR-HUD บนกระจกหน้า</span><span class="win win-dp">ล้ำสุด</span></td>
+            <td class="val-nv">Digital Cluster 10.17 นิ้ว</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบนำทาง</td>
+            <td class="val-mg"><span class="yes">✔ มี</span></td>
+            <td class="val-dp"><span class="yes">✔ ออนไลน์</span></td>
+            <td class="val-nv"><span class="yes">✔ มี</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">Apple CarPlay / Android Auto</td>
+            <td class="val-mg"><span class="yes">✔ Wireless</span></td>
+            <td class="val-dp"><span class="yes">✔ Wireless</span></td>
+            <td class="val-nv"><span class="yes">✔ Wireless</span></td>
+          </tr>
+
+          <tr class="sub-group"><td colspan="4">เสียง & การเชื่อมต่อ</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">จำนวนลำโพง</td>
+            <td class="val-mg">6 ตำแหน่ง</td>
+            <td class="val-dp"><span class="val-bold">14 ตำแหน่ง</span><span class="win win-dp">มากสุด</span><br><span style="font-size:11.5px;color:var(--ink-3)">+ ลำโพงภายนอกปรับเสียงได้</span></td>
+            <td class="val-nv">8 ตำแหน่ง</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ชาร์จไร้สาย Wireless</td>
+            <td class="val-mg"><span class="yes">✔ มี</span></td>
+            <td class="val-dp"><span class="yes val-bold">✔ 50W</span><span class="win win-dp">เร็วสุด</span></td>
+            <td class="val-nv"><span class="yes">✔ มี</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">USB Port</td>
+            <td class="val-mg"><span class="tag">USB-A ×2</span></td>
+            <td class="val-dp"><span class="tag">USB-A ×2</span><span class="tag">USB-C ×1</span></td>
+            <td class="val-nv"><span class="tag">USB-A ×2</span><span class="tag">USB-C ×1</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบสั่งการด้วยเสียง</td>
+            <td class="val-mg">ไทย & อังกฤษ</td>
+            <td class="val-dp">ไทย & อังกฤษ <span class="val-bold">4 โซน</span><span class="win win-dp">ครอบคลุมสุด</span></td>
+            <td class="val-nv">ไทย & อังกฤษ 2 โซน</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">OTA Update</td>
+            <td class="val-mg"><span class="yes">✔ มี</span></td>
+            <td class="val-dp"><span class="yes">✔ มี</span></td>
+            <td class="val-nv"><span class="yes">✔ มี</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ควบคุมผ่านแอปมือถือ</td>
+            <td class="val-mg"><span class="yes">✔ มี</span></td>
+            <td class="val-dp"><span class="yes">✔ มี</span></td>
+            <td class="val-nv"><span class="yes">✔ มี</span></td>
+          </tr>
+
+          <tr class="sub-group"><td colspan="4">เบาะนั่ง & ความสะดวกสบาย</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">เบาะคนขับ</td>
+            <td class="val-mg">ปรับไฟฟ้า 6 ทิศทาง<br><span class="tag">เป่าลมเย็น</span></td>
+            <td class="val-dp">ปรับไฟฟ้า 6 ทิศทาง + ดันหลัง 2<br><span class="tag">เป่าลม</span><span class="tag">อุ่น</span><span class="tag">Memory</span></td>
+            <td class="val-nv">ปรับไฟฟ้า 6 ทิศทาง<br><span class="tag">Memory</span><span class="tag">Welcome Func.</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">เบาะผู้โดยสารหน้า</td>
+            <td class="val-mg">ปรับไฟฟ้า 6 ทิศทาง<br><span class="tag">เป่าลมเย็น</span><span class="win win-mg">ครบทั้งคู่</span></td>
+            <td class="val-dp">ปรับไฟฟ้า 4 ทิศทาง + รองขา 2<br><span class="tag">เป่าลม</span><span class="tag">อุ่น</span><span class="tag">Memory</span></td>
+            <td class="val-nv">ปรับไฟฟ้า 4 ทิศทาง (Ultra)</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">วัสดุเบาะ</td>
+            <td class="val-mg">หนังสังเคราะห์</td>
+            <td class="val-dp">หนังสังเคราะห์ระบายอากาศ</td>
+            <td class="val-nv">Microfiber หนังสังเคราะห์</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">แสงบรรยากาศ</td>
+            <td class="val-mg"><span class="na">ไม่ระบุ</span></td>
+            <td class="val-dp"><span class="yes">✔ 64 สี</span></td>
+            <td class="val-nv"><span class="yes">✔ 256 สี</span><span class="win win-nv">มากสุด</span></td>
+          </tr>
+
+          <tr class="sub-group"><td colspan="4">หลังคา & ประตู</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">หลังคา</td>
+            <td class="val-mg">Panoramic Sunroof + ม่านไฟฟ้า</td>
+            <td class="val-dp">Panoramic Glass + ม่านไฟฟ้า<br><span class="tag tag-dp">ประตูไร้ขอบกระจก Frameless</span></td>
+            <td class="val-nv">Moonroof / Sunroof</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ประตูท้าย</td>
+            <td class="val-mg">ไฟฟ้า + <span class="val-bold">Kick Sensor</span><span class="win win-mg">สะดวกสุด</span></td>
+            <td class="val-dp">ไฟฟ้า + ระบบกันหนีบ<br><span class="tag tag-dp">มือจับซ่อนไฟฟ้า</span></td>
+            <td class="val-nv">ไฟฟ้าอัจฉริยะ</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">กระจกมองข้าง</td>
+            <td class="val-mg">พับ/ปรับไฟฟ้า</td>
+            <td class="val-dp">พับ/ปรับไฟฟ้า<br><span class="tag">Auto fold เมื่อล็อก</span><span class="tag">ปรับมุมเมื่อถอย</span></td>
+            <td class="val-nv">พับ/ปรับไฟฟ้า<br><span class="tag">Auto fold เมื่อล็อก</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ระบบปรับอากาศ</td>
+            <td class="val-mg">Auto A/C + PM2.5</td>
+            <td class="val-dp">Auto A/C + PM2.5</td>
+            <td class="val-nv">Auto A/C + PM2.5</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">เบรกมือไฟฟ้า + Auto Hold</td>
+            <td class="val-mg"><span class="yes">✔</span></td>
+            <td class="val-dp"><span class="yes">✔</span></td>
+            <td class="val-nv"><span class="yes">✔</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 6 — SAFETY & ADAS
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="adas">
+    <div class="section-label">
+      <span class="section-num">06</span>
+      <span class="section-title">ความปลอดภัย & ระบบ ADAS</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr class="col-heads">
+            <th class="col-spec">สเปค</th>
+            <th class="col-mg"><div class="col-head-inner"><span class="col-brand">MG S5</span><span class="col-model">รุ่น X+</span></div></th>
+            <th class="col-dp"><div class="col-head-inner"><span class="col-brand">Deepal S05</span><span class="col-model">รุ่น Max</span></div></th>
+            <th class="col-nv"><div class="col-head-inner"><span class="col-brand">Nevo Q05</span><span class="col-model">รุ่น Ultra</span></div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sub-group"><td colspan="4">โครงสร้างความปลอดภัยพื้นฐาน</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">ถุงลมนิรภัย</td>
+            <td class="val-mg">6 ตำแหน่ง (คู่หน้า + ข้าง + ม่าน)</td>
+            <td class="val-dp">6 ตำแหน่ง (คู่หน้า + ข้าง + ม่าน)</td>
+            <td class="val-nv">6 ตำแหน่ง (คู่หน้า + ข้าง + ม่าน)</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ISOFIX</td>
+            <td class="val-mg"><span class="yes">✔</span></td>
+            <td class="val-dp"><span class="yes">✔</span></td>
+            <td class="val-nv"><span class="yes">✔</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">TPMS (แจ้งเตือนลมยาง)</td>
+            <td class="val-mg"><span class="yes">✔</span></td>
+            <td class="val-dp"><span class="yes">✔</span></td>
+            <td class="val-nv"><span class="yes">✔</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">Child Safety Lock ไฟฟ้า</td>
+            <td class="val-mg"><span class="yes">✔</span></td>
+            <td class="val-dp"><span class="yes">✔ ไฟฟ้า</span></td>
+            <td class="val-nv"><span class="yes">✔</span></td>
+          </tr>
+
+          <tr class="sub-group"><td colspan="4">กล้อง & การมองเห็น</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">กล้องรอบทิศทาง</td>
+            <td class="val-mg">3D 360° + เซนเซอร์หน้า-หลัง</td>
+            <td class="val-dp"><span class="val-bold">3D 360° + ภาพโปร่งแสง + DVR 360°</span><span class="win win-dp">ครบสุด</span></td>
+            <td class="val-nv">3D 360° + ใต้ท้องโปร่งแสง + DVR รอบคัน</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">จำนวนเซนเซอร์</td>
+            <td class="val-mg">หน้า + หลัง</td>
+            <td class="val-dp">หน้า 2 / หลัง 4</td>
+            <td class="val-nv">หลัง 3 ตำแหน่ง</td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">โหมดเฝ้าระวัง (Sentry Mode)</td>
+            <td class="val-mg"><span class="no">✕ ไม่มี</span></td>
+            <td class="val-dp"><span class="yes">✔ Sentry Mode</span><span class="win win-dp">เฉพาะรุ่น</span></td>
+            <td class="val-nv"><span class="no">✕ ไม่ระบุ</span></td>
+          </tr>
+
+          <tr class="sub-group"><td colspan="4">ระบบช่วยขับ ADAS</td></tr>
+          <tr class="data-row">
+            <td class="spec-label">Cruise Control อัจฉริยะ</td>
+            <td class="val-mg"><span class="tag">ACC</span></td>
+            <td class="val-dp"><span class="tag tag-dp">IACC</span> (ผสมผสาน)</td>
+            <td class="val-nv"><span class="tag tag-nv">IACC</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ช่วยขับในคิว Traffic</td>
+            <td class="val-mg"><span class="yes">✔ TJA</span></td>
+            <td class="val-dp"><span class="yes">✔ TJA</span></td>
+            <td class="val-nv"><span class="yes">✔ TJA</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ควบคุมกลางเลน</td>
+            <td class="val-mg"><span class="yes">✔ LKA + ELK</span></td>
+            <td class="val-dp"><span class="yes">✔ LCC + LKA + ELK + LDC</span><span class="win win-dp">ครบสุด</span></td>
+            <td class="val-nv"><span class="yes">✔ LCC + LKA + ELK + LDC</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">เบรกฉุกเฉินอัตโนมัติ (AEB)</td>
+            <td class="val-mg"><span class="yes">✔ AEB + FCW</span></td>
+            <td class="val-dp"><span class="yes">✔ AEB + FCW</span></td>
+            <td class="val-nv"><span class="yes">✔ AEB + FCW</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">มุมอับสายตา (BSD)</td>
+            <td class="val-mg"><span class="yes">✔ BSD + LCA + RCW + RCTA + RCTB</span></td>
+            <td class="val-dp"><span class="yes">✔ BSD + LCA + RCW + RCTA + RCTB</span></td>
+            <td class="val-nv"><span class="yes">✔ BSD + LCA + RCTA + RCTB</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">เตือนเปิดประตูโดน (DOW/SEW)</td>
+            <td class="val-mg"><span class="yes">✔ DOW</span></td>
+            <td class="val-dp"><span class="yes">✔ SEW</span></td>
+            <td class="val-nv"><span class="yes">✔ SEW + Door Opening Warning</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">จอดรถทางไกล (RSIO)</td>
+            <td class="val-mg"><span class="no">✕ ไม่มี</span></td>
+            <td class="val-dp"><span class="yes">✔ RSIO</span><span class="win win-dp">เฉพาะรุ่น</span></td>
+            <td class="val-nv"><span class="no">✕ ไม่ระบุ</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ตรวจจับอาการง่วง (DMS)</td>
+            <td class="val-mg"><span class="na">ไม่ระบุ</span></td>
+            <td class="val-dp"><span class="yes">✔ DMS</span></td>
+            <td class="val-nv"><span class="na">ไม่ระบุ</span></td>
+          </tr>
+          <tr class="data-row">
+            <td class="spec-label">ตรวจจับป้ายจราจร (TSR)</td>
+            <td class="val-mg"><span class="yes">✔</span></td>
+            <td class="val-dp"><span class="yes">✔</span></td>
+            <td class="val-nv"><span class="na">ไม่ระบุ</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SECTION 7 — VERDICT CARDS
+  ════════════════════════════════════════════════════════ -->
+  <div class="section" id="verdict">
+    <div class="section-label">
+      <span class="section-num">07</span>
+      <span class="section-title">สรุปจุดเด่นแต่ละรุ่น</span>
+    </div>
+    <div class="cards">
+
+      <div class="card card-mg">
+        <div class="card-header">
+          <span class="card-brand">MG S5</span>
+          <span class="card-trim">รุ่น X+</span>
+        </div>
+        <ul>
+          <li><strong>Lifetime Warranty แบตเตอรี่+มอเตอร์</strong> — ไม่มีวันหมดอายุ ความคุ้มค่าระยะยาวสูงสุด</li>
+          <li><strong>เป่าลมเย็นเบาะทั้งคู่หน้า</strong> — ฟีเจอร์เหมาะกับสภาพอากาศไทยที่ไม่ค่อยมีในกลุ่มนี้</li>
+          <li><strong>ช่วงล่างหลัง 5-Link</strong> — ให้ความนุ่มนวลและเสถียรภาพเหนือกว่า Multi-link ทั่วไป</li>
+          <li><strong>ชาร์จ DC 150 kW</strong> + ระบบ V2L และ One Pedal Drive ครบ</li>
+          <li><strong>Kick Sensor ประตูท้าย</strong> — ความสะดวกเล็กๆ ที่ใช้จริงในชีวิตประจำวัน</li>
+          <li>หน้าจอกลางใหญ่สุด <strong>15.6 นิ้ว</strong></li>
+        </ul>
+      </div>
+
+      <div class="card card-dp">
+        <div class="card-header">
+          <span class="card-brand">Deepal S05</span>
+          <span class="card-trim">รุ่น Max</span>
+        </div>
+        <ul>
+          <li><strong>ตัวถังใหญ่สุดในกลุ่ม</strong> — ฐานล้อ 2,880 มม. พื้นที่ด้านหลังกว้างขวางที่สุด</li>
+          <li><strong>238 PS / 320 N·m</strong> — แรงและเร็วสุด 0–100 ใน 7.3 วินาที ขับเคลื่อนล้อหลัง RWD</li>
+          <li><strong>IACC + LCC + LDC + RSIO</strong> — ชุด ADAS ครบและล้ำสุดในกลุ่ม</li>
+          <li><strong>AR-HUD + จอหมุนซันฟลาวเวอร์</strong> — ประสบการณ์ in-car tech ที่โดดเด่น</li>
+          <li><strong>Frunk 159 ลิตร</strong> รวม ลำโพง 14 ตำแหน่ง + ลำโพงภายนอก + Sentry Mode + DVR 360°</li>
+          <li><strong>Wireless Charger 50W</strong> ชาร์จเร็วสุดในกลุ่ม</li>
+        </ul>
+      </div>
+
+      <div class="card card-nv">
+        <div class="card-header">
+          <span class="card-brand">Nevo Q05</span>
+          <span class="card-trim">รุ่น Ultra</span>
+        </div>
+        <ul>
+          <li><strong>Ground Clearance 170 มม.</strong> สูงสุดในกลุ่ม — ขับในเมืองน้ำท่วมได้มั่นใจกว่า</li>
+          <li><strong>DC Fast Charge 162 kW (3C Technology)</strong> — กำลังชาร์จสูงสุด 30→80% ใน 15 นาที</li>
+          <li><strong>แบตเตอรี่ LFP จาก CATL</strong> — แบรนด์ผลิตแบตเตอรี่ชั้นนำของโลก</li>
+          <li><strong>รัศมีวงเลี้ยวแคบสุด 5.3 ม.</strong> — เหมาะกับการขับในเมืองและที่จอดแคบ</li>
+          <li><strong>ท้ายรถ ~540 ลิตร</strong> (450 + 90 ใต้พื้น) พื้นที่บรรทุกรวมสูงสุด</li>
+          <li><strong>Ambient Light 256 สี</strong> — มากสุดในกลุ่ม</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  ข้อมูลอ้างอิงจาก Official Spec Sheet ของแต่ละแบรนด์ · MG S5 EV Plus 2025 TH · Deepal S05 Thai Version · Nevo Q05 Specs-sheet EN<br>
+  ตัวเลข NEDC เป็นค่าประมาณการทดสอบในห้องปฏิบัติการ ระยะทางจริงอาจแตกต่างตามสภาพการขับขี่
+</footer>
+
+</body>
+</html>
