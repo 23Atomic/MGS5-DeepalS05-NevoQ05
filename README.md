@@ -1,2 +1,20 @@
-# MGS5-DeepalS05-NevoQ05
-Detailed EV spec comparison — MG S5 X+ vs Deepal S05 Max vs Nevo Q05 Ultra
+# MG · Deepal · Nevo EV Comparison
+
+เปรียบเทียบสเปคเชิงลึก 3 รุ่นทอป ข้อมูลจาก Official Spec Sheet
+
+## รถที่เปรียบเทียบ
+- MG S5 รุ่น X+
+- Deepal S05 รุ่น Max
+- Nevo Q05 รุ่น Ultra
+
+## หมวดที่ครอบคลุม
+- มิติตัวถัง & ความจุ
+- ขุมพลัง & สมรรถนะ
+- แบตเตอรี่ & การชาร์จ
+- ช่วงล่าง & เบรก
+- ห้องโดยสาร & อินโฟเทนเมนต
+- ความปลอดภัย & ADAS
+
+## แหล่งข้อมูล
+ข้อมูลอางอิงจาก Official Spec Sheet ของแต่ละแบรนด์
+ตัวเลข NEDC เปนค่าทดสอบในห้องปฏิบัติการ ระยะทางจริงอาจแตกต่าง
